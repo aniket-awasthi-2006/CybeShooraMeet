@@ -1,48 +1,44 @@
 import { ReactNode } from "react";
 import type { Metadata } from "next";
-import { ClerkProvider } from "@clerk/nextjs";
 import { Inter } from "next/font/google";
+import { getServerSession } from "next-auth";
 
 import "@stream-io/video-react-sdk/dist/css/styles.css";
 import "react-datepicker/dist/react-datepicker.css";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
+import SessionProvider from "@/providers/SessionProvider";
+import { authOptions } from "@/lib/auth";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "YOOM",
-  description: "Video calling App",
+  title: "CyberShoora Meet",
+  description: "CyberShoora Meet - Secure video collaboration focused workspace",
   icons: {
-    icon: "/icons/logo.svg",
+    icon: [
+      { url: "/icons/Logolight.svg", media: "(prefers-color-scheme: light)" },
+      { url: "/icons/Logodark.svg", media: "(prefers-color-scheme: dark)" },
+    ],
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{ children: ReactNode }>) {
+  const session = await getServerSession(authOptions);
+
   return (
-    <html lang="en">
-      <ClerkProvider
-        appearance={{
-          layout: {
-            socialButtonsVariant: "iconButton",
-            logoImageUrl: "/icons/yoom-logo.svg",
-          },
-          variables: {
-            colorText: "#fff",
-            colorPrimary: "#0E78F9",
-            colorBackground: "#1C1F2E",
-            colorInputBackground: "#252A41",
-            colorInputText: "#fff",
-          },
-        }}
+    <html lang="en" className="dark">
+      <body
+        className={`${inter.className} bg-dark-2 text-white`}
+        suppressHydrationWarning
       >
-        <body className={`${inter.className} bg-dark-2`}>
+        <SessionProvider session={session}>
           <Toaster />
           {children}
-        </body>
-      </ClerkProvider>
+        </SessionProvider>
+      </body>
     </html>
   );
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { useUser } from "@clerk/nextjs";
+import { useSession } from "next-auth/react";
 import { useStreamVideoClient } from "@stream-io/video-react-sdk";
 import { useRouter } from "next/navigation";
 
@@ -29,16 +29,16 @@ const Table = ({
 
 const PersonalRoom = () => {
   const router = useRouter();
-  const { user } = useUser();
+  const { data: session, status } = useSession();
   const client = useStreamVideoClient();
   const { toast } = useToast();
 
-  const meetingId = user?.id;
+  const meetingId = session?.user?.id;
 
   const { call } = useGetCallById(meetingId!);
 
   const startRoom = async () => {
-    if (!client || !user) return;
+    if (!client || status !== "authenticated" || !session?.user?.id) return;
 
     const newCall = client.call("default", meetingId!);
 
@@ -59,16 +59,22 @@ const PersonalRoom = () => {
     <section className="flex size-full flex-col gap-10 text-white">
       <h1 className="text-xl font-bold lg:text-3xl">Personal Meeting Room</h1>
       <div className="flex w-full flex-col gap-8 xl:max-w-[900px]">
-        <Table title="Topic" description={`${user?.username}'s Meeting Room`} />
+        <Table
+          title="Topic"
+          description={`${(session?.user?.name || session?.user?.email || "User")}'s Meeting Room`}
+        />
         <Table title="Meeting ID" description={meetingId!} />
         <Table title="Invite Link" description={meetingLink} />
       </div>
       <div className="flex gap-5">
-        <Button className="bg-blue-1" onClick={startRoom}>
+        <Button
+        variant="custom"
+        className="bg-[#2a2a2a]" onClick={startRoom}>
           Start Meeting
         </Button>
         <Button
-          className="bg-dark-3"
+          variant="custom"
+          className="bg-[#2a2a2a]"
           onClick={() => {
             navigator.clipboard.writeText(meetingLink);
             toast({
