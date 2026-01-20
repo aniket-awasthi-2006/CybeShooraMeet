@@ -12,6 +12,6 @@
     <img src="https://img.shields.io/badge/-Clerk-black?style=for-the-badge&logoColor=white&logo=clerk&color=6C47FF" alt="clerk" />
   </div>
 
-  <h3 align="center">Shoora Meet - Video Conferencing Platform</h3>
+  <h3 align="center">CyberShoora Meet - Video Conferencing Platform</h3>
 
   </div>
