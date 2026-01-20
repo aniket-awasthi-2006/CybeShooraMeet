@@ -52,8 +52,8 @@ const SignInPage = () => {
   };
 
   return (
+    isLoading ? <Loader /> : 
     <div className="flex min-h-screen bg-gradient-to-br from-black via-[#0f172a] to-[#0b1324] text-white">
-      {isLoading && <Loader />}
       <div className="hidden w-1/2 lg:block">
         <Image
           src="/icons/Cmmockup.svg"

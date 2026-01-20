@@ -3,6 +3,7 @@
 import { useCall, useCallStateHooks } from '@stream-io/video-react-sdk';
 
 import { Button } from './ui/button';
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
 const EndCallButton = () => {
@@ -31,8 +32,24 @@ const EndCallButton = () => {
   };
 
   return (
-    <Button onClick={endCall} className="bg-red-500">
-      End call for everyone
+    <Button onClick={endCall} 
+    variant="custom"
+    className="flex h-11 px-4 gap-1 items-center justify-center rounded-full bg-red-600 text-white shadow-lg ring-1 ring-red-700/50 transition hover:bg-red-700"
+               >
+                 
+                   <Image
+                    src="/icons/endmeet.svg"
+                    alt="End Meeting"
+                    width={30}
+                    height={30}
+                  />
+                   <Image
+                    src="/icons/hangup.svg"
+                    alt="End Meeting"
+                    width={20}
+                    height={20} 
+                    
+                  />
     </Button>
   );
 };

@@ -1,0 +1,18 @@
+{
+    "sourceFile": "components/MeetingSetup.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1768764030381,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1768764030381,
+            "name": "Commit-0",
+            "content": "'use client';\r\nimport { useEffect, useState } from 'react';\r\nimport {\r\n  DeviceSettings,\r\n  VideoPreview,\r\n  useCall,\r\n  useCallStateHooks,\r\n} from '@stream-io/video-react-sdk';\r\n\r\nimport Alert from './Alert';\r\nimport { Button } from './ui/button';\r\n\r\nconst MeetingSetup = ({\r\n  setIsSetupComplete,\r\n}: {\r\n  setIsSetupComplete: (value: boolean) => void;\r\n}) => {\r\n  // https://getstream.io/video/docs/react/guides/call-and-participant-state/#call-state\r\n  const { useCallEndedAt, useCallStartsAt } = useCallStateHooks();\r\n  const callStartsAt = useCallStartsAt();\r\n  const callEndedAt = useCallEndedAt();\r\n  const callTimeNotArrived =\r\n    callStartsAt && new Date(callStartsAt) > new Date();\r\n  const callHasEnded = !!callEndedAt;\r\n\r\n  const call = useCall();\r\n\r\n  if (!call) {\r\n    throw new Error(\r\n      'useStreamCall must be used within a StreamCall component.',\r\n    );\r\n  }\r\n\r\n  // https://getstream.io/video/docs/react/ui-cookbook/replacing-call-controls/\r\n  const [isMicCamToggled, setIsMicCamToggled] = useState(false);\r\n\r\n  useEffect(() => {\r\n    if (isMicCamToggled) {\r\n      call.camera.disable();\r\n      call.microphone.disable();\r\n    } else {\r\n      call.camera.enable();\r\n      call.microphone.enable();\r\n    }\r\n  }, [isMicCamToggled, call.camera, call.microphone]);\r\n\r\n  if (callTimeNotArrived)\r\n    return (\r\n      <Alert\r\n        title={`Your Meeting has not started yet. It is scheduled for ${callStartsAt.toLocaleString()}`}\r\n      />\r\n    );\r\n\r\n  if (callHasEnded)\r\n    return (\r\n      <Alert\r\n        title=\"The call has been ended by the host\"\r\n        iconUrl=\"/icons/call-ended.svg\"\r\n      />\r\n    );\r\n\r\n  return (\r\n    <div className=\"flex h-screen w-full flex-col items-center justify-center gap-3 text-white fade-in\">\r\n      <h1 className=\"text-center text-2xl font-bold\">Setup</h1>\r\n      <VideoPreview />\r\n      <div className=\"flex h-16 items-center justify-center gap-3\">\r\n        <label className=\"flex items-center justify-center gap-2 font-medium\">\r\n          <input\r\n            type=\"checkbox\"\r\n            checked={isMicCamToggled}\r\n            onChange={(e) => setIsMicCamToggled(e.target.checked)}\r\n          />\r\n          Join with mic and camera off\r\n        </label>\r\n        <DeviceSettings />\r\n      </div>\r\n      <div className=\"text-center text-sm text-gray-300 max-w-md\">\r\n        <p className=\"mb-2\">⚠️ <strong>Warning:</strong> The host can unmute or uncam you at any time.</p>\r\n        <p>Participants must allow camera and microphone access to join.</p>\r\n      </div>\r\n      <Button\r\n        className=\"rounded-md bg-[#2a2a2a] px-4 py-2.5 font-bold hover:bg-[#4c535b]\"\r\n        onClick={() => {\r\n          call.join();\r\n\r\n          setIsSetupComplete(true);\r\n        }}\r\n      >\r\n        Join meeting\r\n      </Button>\r\n    </div>\r\n  );\r\n};\r\n\r\nexport default MeetingSetup;\r\n"
+        }
+    ]
+}

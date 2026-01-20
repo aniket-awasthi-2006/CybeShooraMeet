@@ -1,16 +1,12 @@
-import Image from 'next/image';
+import React from "react";
+import { HashLoader } from "react-spinners";
 
 const Loader = () => {
-  return (
-    <div className="flex-center h-screen w-full">
-      <Image
-        src="/icons/loading-circle.svg"
-        alt="Loading..."
-        width={50}
-        height={50}
-      />
-    </div>
-  );
+    return (
+        <div className='fixed inset-0 flex items-center justify-center bg-black bg-opacity-10 z-50'>
+            <HashLoader color="indigo" size={80} />
+        </div>
+    );
 };
 
 export default Loader;

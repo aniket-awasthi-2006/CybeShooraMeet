@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 
 import { useGetCallById } from "@/hooks/useGetCallById";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 import { useToast } from "@/components/ui/use-toast";
 
 const Table = ({
@@ -69,12 +70,12 @@ const PersonalRoom = () => {
       <div className="flex gap-5">
         <Button
         variant="custom"
-        className="bg-[#2a2a2a]" onClick={startRoom}>
+          className="bg-[#2a2a2a] border border-white rounded-[14px] px-6" onClick={startRoom}>
           Start Meeting
         </Button>
         <Button
           variant="custom"
-          className="bg-[#2a2a2a]"
+          className="bg-[#2a2a2a] border border-white rounded-[14px] px-6"
           onClick={() => {
             navigator.clipboard.writeText(meetingLink);
             toast({
@@ -82,6 +83,7 @@ const PersonalRoom = () => {
             });
           }}
         >
+          <Image src="/icons/copy.svg" alt="Copy" width={20} height={20} />
           Copy Invitation
         </Button>
       </div>

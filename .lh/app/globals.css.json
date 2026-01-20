@@ -1,0 +1,18 @@
+{
+    "sourceFile": "app/globals.css",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1768764019447,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1768764019447,
+            "name": "Commit-0",
+            "content": "@tailwind base;\r\n@tailwind components;\r\n@tailwind utilities;\r\n\r\n* {\r\n  margin: 0;\r\n  padding: 0;\r\n  box-sizing: border-box;\r\n}\r\n\r\n/* ======== stream css overrides ======== */\r\n.str-video__call-stats {\r\n  max-width: 500px;\r\n  position: relative;\r\n}\r\n\r\n.str-video__speaker-layout__wrapper {\r\n  max-height: 700px;\r\n}\r\n\r\n.str-video__participant-details {\r\n  color: white;\r\n}\r\n\r\n.str-video__menu-container {\r\n  color: white;\r\n}\r\n\r\n.str-video__notification {\r\n  color: white;\r\n}\r\n\r\n.str-video__participant-list {\r\n  background-color: #1c1f2e;\r\n  padding: 10px;\r\n  border-radius: 10px;\r\n  color: white;\r\n  height: 100%;\r\n}\r\n\r\n.str-video__call-controls__button {\r\n  height: 40px;\r\n}\r\n\r\n.glassmorphism {\r\n  background: rgba(255, 255, 255, 0.25);\r\n  backdrop-filter: blur(4px);\r\n  -webkit-backdrop-filter: blur(4px);\r\n}\r\n\r\n.glassmorphism2 {\r\n  background: rgba(18, 17, 17, 0.25);\r\n  backdrop-filter: blur(8px);\r\n  -webkit-backdrop-filter: blur(8px);\r\n}\r\n\r\n/* ==== clerk class override ===== */\r\n\r\n.cl-userButtonPopoverActionButtonIcon {\r\n  color: white;\r\n}\r\n\r\n.cl-logoBox {\r\n  height: 40px;\r\n}\r\n\r\n.cl-dividerLine {\r\n  background: #252a41;\r\n  height: 2px;\r\n}\r\n\r\n.cl-socialButtonsIconButton {\r\n  border: 3px solid #565761;\r\n}\r\n\r\n.cl-internal-wkkub3 {\r\n  color: white;\r\n}\r\n\r\n.cl-userButtonPopoverActionButton {\r\n  color: white;\r\n}\r\n\r\n/* =============================== */\r\n\r\n@layer utilities {\r\n  .flex-center {\r\n    @apply flex justify-center items-center;\r\n  }\r\n\r\n  .flex-between {\r\n    @apply flex justify-between items-center;\r\n  }\r\n}\r\n\r\n/* animation */\r\n\r\n.show-block {\r\n  width: 100%;\r\n  max-width: 350px;\r\n  display: block;\r\n  animation: show 0.7s forwards linear;\r\n}\r\n\r\n@keyframes show {\r\n  0% {\r\n    animation-timing-function: ease-in;\r\n    width: 0%;\r\n  }\r\n\r\n  100% {\r\n    animation-timing-function: ease-in;\r\n    width: 100%;\r\n  }\r\n}\r\n\r\n/* Smooth transitions and animations */\r\n* {\r\n  transition: all 0.3s ease-in-out;\r\n}\r\n\r\nbutton,\r\n.cursor-pointer {\r\n  transition: all 0.2s ease-in-out;\r\n}\r\n\r\nbutton:hover,\r\n.cursor-pointer:hover {\r\n  transform: scale(1.05);\r\n}\r\n\r\n.fade-in {\r\n  animation: fadeIn 0.5s ease-in-out;\r\n}\r\n\r\n@keyframes fadeIn {\r\n  from {\r\n    opacity: 0;\r\n    transform: translateY(20px);\r\n  }\r\n\r\n  to {\r\n    opacity: 1;\r\n    transform: translateY(0);\r\n  }\r\n}\r\n\r\n.slide-in-left {\r\n  animation: slideInLeft 0.5s ease-in-out;\r\n}\r\n\r\n@keyframes slideInLeft {\r\n  from {\r\n    opacity: 0;\r\n    transform: translateX(-20px);\r\n  }\r\n\r\n  to {\r\n    opacity: 1;\r\n    transform: translateX(0);\r\n  }\r\n}"
+        }
+    ]
+}
